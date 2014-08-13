@@ -1,2 +1,4 @@
-php-fedex-api-wrapper
-=====================
+FedEx API
+=========
+
+Simple object oriented wrapper for FedEx API.

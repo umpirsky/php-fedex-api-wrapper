@@ -1,6 +1,6 @@
 <?php
 namespace FedEx\UploadDocumentService;
-    
+
 use FedEx\AbstractRequest;
 
 /**
@@ -12,34 +12,9 @@ use FedEx\AbstractRequest;
  */
 class Request extends AbstractRequest
 {
-    /**
-     * WSDL Path
-     *
-     * @var string
-     */
-    protected $_wsdlPath;
-
-    /**
-     * SoapClient object
-     *
-     * @var SoapClient
-     */
-    protected $_soapClient;
-
-    /**
-     * Constructor
-     *
-     * @param string $wsdlPath
-     */
-    public function __construct($wsdlPath = null)
+    public function __construct($beta = true, $wsdlPath = null)
     {
-        if (null != $wsdlPath) {
-            $this->_wsdlPath = $wsdlPath;
-        } else {
-            $this->_wsdlPath = realpath(dirname(__FILE__) . '/../_wsdl/UploadDocumentService_v1.wsdl');
-        }
-
-        $this->_soapClient = new \SoapClient($this->_wsdlPath, array('trace' => true));
+        parent::__construct($beta, 'UploadDocumentService_v1.wsdl', $wsdlPath);
     }
 
     /**
@@ -55,7 +30,7 @@ class Request extends AbstractRequest
     /**
      * Sends the UploadDocumentsRequest and returns the response
      *
-     * @param ComplexType\UploadDocumentsRequest $uploadDocumentsRequest 
+     * @param ComplexType\UploadDocumentsRequest $uploadDocumentsRequest
      * @return stdClass
      */
     public function getUploadDocumentsReply(ComplexType\UploadDocumentsRequest $uploadDocumentsRequest)
@@ -65,15 +40,14 @@ class Request extends AbstractRequest
        /**
      * Sends the UploadImagesRequest and returns the response
      *
-     * @param ComplexType\UploadImagesRequest $uploadImagesRequest 
+     * @param ComplexType\UploadImagesRequest $uploadImagesRequest
      * @return stdClass
      */
     public function getUploadImagesReply(ComplexType\UploadImagesRequest $uploadImagesRequest)
     {
         return $this->_soapClient->uploadImages($uploadImagesRequest->toArray());
     }
-   
+
 
 }
 
-   

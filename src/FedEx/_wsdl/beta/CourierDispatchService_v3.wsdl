@@ -319,7 +319,7 @@
 								<xs:MaxLength>35</xs:MaxLength>
 							</xs:appinfo>
 						</xs:annotation>
-					</xs:element>
+					</xs:element>					
 					<xs:element name="PhoneNumber" type="xs:string">
 						<xs:annotation>
 							<xs:documentation>Identifies the contact person's phone number.</xs:documentation>
@@ -1069,7 +1069,7 @@
 	</binding>
 	<service name="CourierDispatchService">
 		<port name="CourierDispatchServicePort" binding="ns:CourierDispatchServiceSoapBinding">
-			<s1:address location="https://gateway.fedex.com:443/web-services"/>
+			<s1:address location="https://gatewaybeta.fedex.com:443/web-services"/>
 		</port>
 	</service>
 </definitions>

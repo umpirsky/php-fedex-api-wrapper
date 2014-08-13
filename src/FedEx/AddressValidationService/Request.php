@@ -1,6 +1,6 @@
 <?php
 namespace FedEx\AddressValidationService;
-    
+
 use FedEx\AbstractRequest;
 
 /**
@@ -12,34 +12,9 @@ use FedEx\AbstractRequest;
  */
 class Request extends AbstractRequest
 {
-    /**
-     * WSDL Path
-     *
-     * @var string
-     */
-    protected $_wsdlPath;
-
-    /**
-     * SoapClient object
-     *
-     * @var SoapClient
-     */
-    protected $_soapClient;
-
-    /**
-     * Constructor
-     *
-     * @param string $wsdlPath
-     */
-    public function __construct($wsdlPath = null)
+    public function __construct($beta = true, $wsdlPath = null)
     {
-        if (null != $wsdlPath) {
-            $this->_wsdlPath = $wsdlPath;
-        } else {
-            $this->_wsdlPath = realpath(dirname(__FILE__) . '/../_wsdl/AddressValidationService_v2.wsdl');
-        }
-
-        $this->_soapClient = new \SoapClient($this->_wsdlPath, array('trace' => true));
+        parent::__construct($beta, 'AddressValidationService_v2.wsdl', $wsdlPath);
     }
 
     /**
@@ -55,15 +30,14 @@ class Request extends AbstractRequest
     /**
      * Sends the AddressValidationRequest and returns the response
      *
-     * @param ComplexType\AddressValidationRequest $addressValidationRequest 
+     * @param ComplexType\AddressValidationRequest $addressValidationRequest
      * @return stdClass
      */
     public function getAddressValidationReply(ComplexType\AddressValidationRequest $addressValidationRequest)
     {
         return $this->_soapClient->addressValidation($addressValidationRequest->toArray());
     }
-   
+
 
 }
 
-   

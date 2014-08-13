@@ -674,7 +674,7 @@
 	</binding>
 	<service name="LocatorService">
 		<port name="LocatorServicePort" binding="ns:LocatorServiceSoapBinding">
-			<s1:address location="https://ws.fedex.com:443/web-services"/>
+			<s1:address location="https://wsbeta.fedex.com:443/web-services"/>
 		</port>
 	</service>
 </definitions>

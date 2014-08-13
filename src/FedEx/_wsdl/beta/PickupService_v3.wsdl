@@ -2755,7 +2755,7 @@
 	</binding>
 	<service name="PickupService">
 		<port name="PickupServicePort" binding="ns:PickupServiceSoapBinding">
-			<s1:address location="https://ws.fedex.com:443/web-services"/>
+			<s1:address location="https://wsbeta.fedex.com:443/web-services"/>
 		</port>
 	</service>
 </definitions>

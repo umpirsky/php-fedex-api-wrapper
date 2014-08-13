@@ -418,7 +418,7 @@
 						<xs:annotation>
 							<xs:documentation>Identifies the version/level of a service operation expected by a caller (in each request) and performed by the callee (in each reply).</xs:documentation>
 						</xs:annotation>
-					</xs:element>
+					</xs:element>					
 					<xs:element name="Images" minOccurs="0" maxOccurs="unbounded" type="ns:UploadImageDetail"/>
 				</xs:sequence>
 			</xs:complexType>
@@ -531,7 +531,7 @@
 	</binding>
 	<service name="UploadDocumentService">
 		<port name="UploadDocumentServicePort" binding="ns:UploadDocumentServiceSoapBinding">
-			<s1:address location="https://gateway.fedex.com:443/web-services/uploaddocument"/>
+			<s1:address location="https://gatewaybeta.fedex.com:443/web-services/uploaddocument"/>
 		</port>
 	</service>
 </definitions>

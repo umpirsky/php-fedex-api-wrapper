@@ -1,4 +1,5 @@
 <?php
+
 namespace FedEx;
 
 /**
@@ -9,5 +10,14 @@ namespace FedEx;
  */
 abstract class AbstractRequest
 {
-    
+    protected $_soapClient;
+
+    public function __construct($beta = true, $wsdlFile, $wsdlPath = null)
+    {
+        if (null === $wsdlPath) {
+            $wsdlPath = __DIR__.'/_wsdl/'.($beta ? 'beta/' : '').$wsdlFile;
+        }
+
+        $this->_soapClient = new \SoapClient($wsdlPath, array('trace' => true));
+    }
 }

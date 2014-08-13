@@ -280,7 +280,7 @@
 						<xs:annotation>
 							<xs:documentation>Identifies the version/level of a service operation expected by a caller (in each request) and performed by the callee (in each reply).</xs:documentation>
 						</xs:annotation>
-					</xs:element>
+					</xs:element>					
 					<xs:element name="CloseDate" minOccurs="0" type="xs:date">
 						<xs:annotation>
 							<xs:documentation>Date on which shipments were closed.</xs:documentation>
@@ -427,7 +427,7 @@
 						<xs:annotation>
 							<xs:documentation>Identifies the version/level of a service operation expected by a caller (in each request) and performed by the callee (in each reply).</xs:documentation>
 						</xs:annotation>
-					</xs:element>
+					</xs:element>					
 					<xs:element name="ReprintOption" minOccurs="0" type="ns:ReprintGroundCloseDocumentsOptionType"/>
 					<xs:element name="CloseDate" minOccurs="0" type="xs:date">
 						<xs:annotation>
@@ -827,7 +827,7 @@
 	</binding>
 	<service name="CloseService">
 		<port name="CloseServicePort" binding="ns:CloseServiceSoapBinding">
-			<s1:address location="https://gateway.fedex.com:443/web-services/close"/>
+			<s1:address location="https://gatewaybeta.fedex.com:443/web-services/close"/>
 		</port>
 	</service>
 </definitions>

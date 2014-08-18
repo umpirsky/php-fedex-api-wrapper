@@ -14,7 +14,7 @@ class Request extends AbstractRequest
 {
     public function __construct($beta = true, $wsdlPath = null)
     {
-        parent::__construct($beta, 'RateService_v10.wsdl', $wsdlPath);
+        parent::__construct($beta, 'RateService_v14.wsdl', $wsdlPath);
     }
 
     /**

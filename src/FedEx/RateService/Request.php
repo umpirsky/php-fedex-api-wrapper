@@ -1,6 +1,6 @@
 <?php
 namespace FedEx\RateService;
-
+    
 use FedEx\AbstractRequest;
 
 /**
@@ -12,9 +12,34 @@ use FedEx\AbstractRequest;
  */
 class Request extends AbstractRequest
 {
-    public function __construct($beta = true, $wsdlPath = null)
+    /**
+     * WSDL Path
+     *
+     * @var string
+     */
+    protected $_wsdlPath;
+
+    /**
+     * SoapClient object
+     *
+     * @var SoapClient
+     */
+    protected $_soapClient;
+
+    /**
+     * Constructor
+     *
+     * @param string $wsdlPath
+     */
+    public function __construct($wsdlPath = null)
     {
-        parent::__construct($beta, 'RateService_v10.wsdl', $wsdlPath);
+        if (null != $wsdlPath) {
+            $this->_wsdlPath = $wsdlPath;
+        } else {
+            $this->_wsdlPath = realpath(dirname(__FILE__) . '/../_wsdl/RateService_v14.wsdl');
+        }
+
+        $this->_soapClient = new \SoapClient($this->_wsdlPath, array('trace' => true));
     }
 
     /**
@@ -30,11 +55,15 @@ class Request extends AbstractRequest
     /**
      * Sends the RateRequest and returns the response
      *
-     * @param ComplexType\RateRequest $rateRequest
+     * @param ComplexType\RateRequest $rateRequest 
      * @return stdClass
      */
     public function getGetRatesReply(ComplexType\RateRequest $rateRequest)
     {
         return $this->_soapClient->getRates($rateRequest->toArray());
     }
+   
+
 }
+
+   

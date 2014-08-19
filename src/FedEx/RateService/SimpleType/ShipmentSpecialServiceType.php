@@ -4,7 +4,7 @@ namespace FedEx\RateService\SimpleType;
 use FedEx\AbstractSimpleType;
 
 /**
- * Identifies the collection of special service offered by FedEx.
+ * ShipmentSpecialServiceType
  *
  * @author      Jeremy Dunn <jeremy@jsdunn.info>
  * @package     PHP FedEx API wrapper
@@ -27,11 +27,14 @@ class ShipmentSpecialServiceType
     const _EXTREME_LENGTH = 'EXTREME_LENGTH';
     const _FOOD = 'FOOD';
     const _FREIGHT_GUARANTEE = 'FREIGHT_GUARANTEE';
+    const _FREIGHT_TO_COLLECT = 'FREIGHT_TO_COLLECT';
     const _FUTURE_DAY_SHIPMENT = 'FUTURE_DAY_SHIPMENT';
     const _HOLD_AT_LOCATION = 'HOLD_AT_LOCATION';
     const _HOME_DELIVERY_PREMIUM = 'HOME_DELIVERY_PREMIUM';
     const _INSIDE_DELIVERY = 'INSIDE_DELIVERY';
     const _INSIDE_PICKUP = 'INSIDE_PICKUP';
+    const _INTERNATIONAL_CONTROLLED_EXPORT_SERVICE = 'INTERNATIONAL_CONTROLLED_EXPORT_SERVICE';
+    const _INTERNATIONAL_TRAFFIC_IN_ARMS_REGULATIONS = 'INTERNATIONAL_TRAFFIC_IN_ARMS_REGULATIONS';
     const _LIFTGATE_DELIVERY = 'LIFTGATE_DELIVERY';
     const _LIFTGATE_PICKUP = 'LIFTGATE_PICKUP';
     const _LIMITED_ACCESS_DELIVERY = 'LIMITED_ACCESS_DELIVERY';
@@ -39,6 +42,7 @@ class ShipmentSpecialServiceType
     const _PENDING_SHIPMENT = 'PENDING_SHIPMENT';
     const _POISON = 'POISON';
     const _PROTECTION_FROM_FREEZING = 'PROTECTION_FROM_FREEZING';
+    const _RETURNS_CLEARANCE = 'RETURNS_CLEARANCE';
     const _RETURN_SHIPMENT = 'RETURN_SHIPMENT';
     const _SATURDAY_DELIVERY = 'SATURDAY_DELIVERY';
     const _SATURDAY_PICKUP = 'SATURDAY_PICKUP';

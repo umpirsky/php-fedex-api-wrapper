@@ -1,6 +1,6 @@
 <?php
 namespace FedEx\PackageMovementInformationService;
-
+    
 use FedEx\AbstractRequest;
 
 /**
@@ -12,9 +12,34 @@ use FedEx\AbstractRequest;
  */
 class Request extends AbstractRequest
 {
-    public function __construct($beta = true, $wsdlPath = null)
+    /**
+     * WSDL Path
+     *
+     * @var string
+     */
+    protected $_wsdlPath;
+
+    /**
+     * SoapClient object
+     *
+     * @var SoapClient
+     */
+    protected $_soapClient;
+
+    /**
+     * Constructor
+     *
+     * @param string $wsdlPath
+     */
+    public function __construct($wsdlPath = null)
     {
-        parent::__construct($beta, 'PackageMovementInformationService_v5.wsdl', $wsdlPath);
+        if (null != $wsdlPath) {
+            $this->_wsdlPath = $wsdlPath;
+        } else {
+            $this->_wsdlPath = realpath(dirname(__FILE__) . '/../_wsdl/PackageMovementInformationService_v5.wsdl');
+        }
+
+        $this->_soapClient = new \SoapClient($this->_wsdlPath, array('trace' => true));
     }
 
     /**
@@ -30,7 +55,7 @@ class Request extends AbstractRequest
     /**
      * Sends the PostalCodeInquiryRequest and returns the response
      *
-     * @param ComplexType\PostalCodeInquiryRequest $postalCodeInquiryRequest
+     * @param ComplexType\PostalCodeInquiryRequest $postalCodeInquiryRequest 
      * @return stdClass
      */
     public function getPostalCodeInquiryReply(ComplexType\PostalCodeInquiryRequest $postalCodeInquiryRequest)
@@ -40,14 +65,15 @@ class Request extends AbstractRequest
        /**
      * Sends the ServiceAvailabilityRequest and returns the response
      *
-     * @param ComplexType\ServiceAvailabilityRequest $serviceAvailabilityRequest
+     * @param ComplexType\ServiceAvailabilityRequest $serviceAvailabilityRequest 
      * @return stdClass
      */
     public function getServiceAvailabilityReply(ComplexType\ServiceAvailabilityRequest $serviceAvailabilityRequest)
     {
         return $this->_soapClient->serviceAvailability($serviceAvailabilityRequest->toArray());
     }
-
+   
 
 }
 
+   

@@ -1,6 +1,6 @@
 <?php
 namespace FedEx\ReturnTagService;
-    
+
 use FedEx\AbstractRequest;
 
 /**
@@ -12,58 +12,20 @@ use FedEx\AbstractRequest;
  */
 class Request extends AbstractRequest
 {
-    /**
-     * WSDL Path
-     *
-     * @var string
-     */
-    protected $_wsdlPath;
-
-    /**
-     * SoapClient object
-     *
-     * @var SoapClient
-     */
-    protected $_soapClient;
-
-    /**
-     * Constructor
-     *
-     * @param string $wsdlPath
-     */
-    public function __construct($wsdlPath = null)
+    public function __construct($beta = true, $wsdlFile = 'ReturnTagService_v1.wsdl', $wsdlPath = null)
     {
-        if (null != $wsdlPath) {
-            $this->_wsdlPath = $wsdlPath;
-        } else {
-            $this->_wsdlPath = realpath(dirname(__FILE__) . '/../_wsdl/ReturnTagService_v1.wsdl');
-        }
-
-        $this->_soapClient = new \SoapClient($this->_wsdlPath, array('trace' => true));
-    }
-
-    /**
-     * Returns the SoapClient instance
-     *
-     * @return \SoapClient
-     */
-    public function getSoapClient()
-    {
-        return $this->_soapClient;
+        parent::__construct($beta, $wsdlFile, $wsdlPath);
     }
 
     /**
      * Sends the ExpressTagAvailabilityRequest and returns the response
      *
-     * @param ComplexType\ExpressTagAvailabilityRequest $expressTagAvailabilityRequest 
+     * @param ComplexType\ExpressTagAvailabilityRequest $expressTagAvailabilityRequest
      * @return stdClass
      */
     public function getGetExpressTagAvailabilityReply(ComplexType\ExpressTagAvailabilityRequest $expressTagAvailabilityRequest)
     {
         return $this->_soapClient->getExpressTagAvailability($expressTagAvailabilityRequest->toArray());
     }
-   
 
 }
-
-   

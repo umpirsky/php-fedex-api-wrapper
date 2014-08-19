@@ -20,4 +20,9 @@ abstract class AbstractRequest
 
         $this->_soapClient = new \SoapClient($wsdlPath, array('trace' => true));
     }
+
+    public function getSoapClient()
+    {
+        return $this->_soapClient;
+    }
 }

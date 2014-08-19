@@ -4,7 +4,7 @@ namespace FedEx\RateService\ComplexType;
 use FedEx\AbstractComplexType;
 
 /**
- * Specific information about the delivery of the email and options for the shipment.
+ * EMailLabelDetail
  *
  * @author      Jeremy Dunn <jeremy@jsdunn.info>
  * @package     PHP FedEx API wrapper
@@ -22,10 +22,10 @@ class EMailLabelDetail
     protected $_name = 'EMailLabelDetail';
 
     /**
-     * Email address to send the URL to.
+     * Set NotificationEMailAddress
      *
      * @param string $notificationEMailAddress
-     * return EMailLabelDetail
+     * @return EMailLabelDetail
      */
     public function setNotificationEMailAddress($notificationEMailAddress)
     {
@@ -34,15 +34,35 @@ class EMailLabelDetail
     }
     
     /**
-     * A message to be inserted into the email.
+     * Returns Set NotificationEMailAddress
+     *
+     * @return string
+     */
+    public function getNotificationEMailAddress()
+    {
+        return $this->NotificationEMailAddress;
+    }
+    
+    /**
+     * Set NotificationMessage
      *
      * @param string $notificationMessage
-     * return EMailLabelDetail
+     * @return EMailLabelDetail
      */
     public function setNotificationMessage($notificationMessage)
     {
         $this->NotificationMessage = $notificationMessage;
         return $this;
+    }
+    
+    /**
+     * Returns Set NotificationMessage
+     *
+     * @return string
+     */
+    public function getNotificationMessage()
+    {
+        return $this->NotificationMessage;
     }
     
 

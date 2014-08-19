@@ -44,7 +44,7 @@ $rateRequest->setTransactionDetail($transactionDetail);
 $version = new ComplexType\VersionId();
 $version
     ->setServiceId('crs')
-    ->setMajor(10)
+    ->setMajor(14)
     ->setIntermediate(0)
     ->setMinor(0);
 
@@ -96,8 +96,7 @@ $shippingChargesPayment = new ComplexType\Payment();
 $shippingChargesPayment->setPaymentType(new SimpleType\PaymentType(SimpleType\PaymentType::_SENDER));
 
 $payor = new ComplexType\Payor();
-$payor->setAccountNumber(FEDEX_ACCOUNT_NUMBER);
-$payor->setCountryCode('US');
+$payor->setResponsibleParty($recipient);
 
 $shippingChargesPayment->setPayor($payor);
 

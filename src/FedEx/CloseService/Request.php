@@ -1,6 +1,6 @@
 <?php
 namespace FedEx\CloseService;
-
+    
 use FedEx\AbstractRequest;
 
 /**
@@ -12,9 +12,34 @@ use FedEx\AbstractRequest;
  */
 class Request extends AbstractRequest
 {
-    public function __construct($beta = true, $wsdlPath = null)
+    /**
+     * WSDL Path
+     *
+     * @var string
+     */
+    protected $_wsdlPath;
+
+    /**
+     * SoapClient object
+     *
+     * @var SoapClient
+     */
+    protected $_soapClient;
+
+    /**
+     * Constructor
+     *
+     * @param string $wsdlPath
+     */
+    public function __construct($wsdlPath = null)
     {
-        parent::__construct($beta, 'CloseService_v2.wsdl', $wsdlPath);
+        if (null != $wsdlPath) {
+            $this->_wsdlPath = $wsdlPath;
+        } else {
+            $this->_wsdlPath = realpath(dirname(__FILE__) . '/../_wsdl/CloseService_v2.wsdl');
+        }
+
+        $this->_soapClient = new \SoapClient($this->_wsdlPath, array('trace' => true));
     }
 
     /**
@@ -30,7 +55,7 @@ class Request extends AbstractRequest
     /**
      * Sends the SmartPostCloseRequest and returns the response
      *
-     * @param ComplexType\SmartPostCloseRequest $smartPostCloseRequest
+     * @param ComplexType\SmartPostCloseRequest $smartPostCloseRequest 
      * @return stdClass
      */
     public function getSmartPostCloseReply(ComplexType\SmartPostCloseRequest $smartPostCloseRequest)
@@ -40,7 +65,7 @@ class Request extends AbstractRequest
        /**
      * Sends the GroundCloseRequest and returns the response
      *
-     * @param ComplexType\GroundCloseRequest $groundCloseRequest
+     * @param ComplexType\GroundCloseRequest $groundCloseRequest 
      * @return stdClass
      */
     public function getGroundCloseReply(ComplexType\GroundCloseRequest $groundCloseRequest)
@@ -50,7 +75,7 @@ class Request extends AbstractRequest
        /**
      * Sends the GroundCloseReportsReprintRequest and returns the response
      *
-     * @param ComplexType\GroundCloseReportsReprintRequest $groundCloseReportsReprintRequest
+     * @param ComplexType\GroundCloseReportsReprintRequest $groundCloseReportsReprintRequest 
      * @return stdClass
      */
     public function getGroundCloseReportsReprintReply(ComplexType\GroundCloseReportsReprintRequest $groundCloseReportsReprintRequest)
@@ -60,7 +85,7 @@ class Request extends AbstractRequest
        /**
      * Sends the GroundCloseWithDocumentsRequest and returns the response
      *
-     * @param ComplexType\GroundCloseWithDocumentsRequest $groundCloseWithDocumentsRequest
+     * @param ComplexType\GroundCloseWithDocumentsRequest $groundCloseWithDocumentsRequest 
      * @return stdClass
      */
     public function getGroundCloseWithDocumentsReply(ComplexType\GroundCloseWithDocumentsRequest $groundCloseWithDocumentsRequest)
@@ -70,14 +95,15 @@ class Request extends AbstractRequest
        /**
      * Sends the ReprintGroundCloseDocumentsRequest and returns the response
      *
-     * @param ComplexType\ReprintGroundCloseDocumentsRequest $reprintGroundCloseDocumentsRequest
+     * @param ComplexType\ReprintGroundCloseDocumentsRequest $reprintGroundCloseDocumentsRequest 
      * @return stdClass
      */
     public function getReprintGroundCloseDocumentsReply(ComplexType\ReprintGroundCloseDocumentsRequest $reprintGroundCloseDocumentsRequest)
     {
         return $this->_soapClient->reprintGroundCloseDocuments($reprintGroundCloseDocumentsRequest->toArray());
     }
-
+   
 
 }
 
+   

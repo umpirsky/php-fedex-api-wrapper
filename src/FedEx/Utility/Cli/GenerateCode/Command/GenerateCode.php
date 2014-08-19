@@ -16,23 +16,23 @@ use FedEx\Utility\CodeGenerator,
  * @subpackage  Utilities
  */
 class GenerateCode extends Console\Command\Command
-{     
+{
     /**
      * Configure implementation
      */
     protected function configure()
     {
         $description = "Parses the .wsdl files and generates Request, ComplexType, and SimpleType classes.";
-        
+
         $this
             ->setName('generate')
             ->setDescription($description)
             ->setHelp(PHP_EOL . $description . PHP_EOL);
     }
-    
+
     /**
      * Executes the command
-     * 
+     *
      * @param \Symfony\Component\Console\Input\InputInterface $input
      * @param \Symfony\Component\Console\Output\OutputInterface $output
      * @throws \Exception
@@ -42,15 +42,15 @@ class GenerateCode extends Console\Command\Command
         if (!isset($_SERVER['PWD'])) {
             throw new \Exception('Cannot determin current working directory.  Make sure you run this script from command line.');
         }
-        
+
         $fedexSrcDir = realpath(dirname($_SERVER['PWD'] . '/' . $_SERVER['PHP_SELF']) . '/../src/FedEx');
-        
+
         if (!is_writable($fedexSrcDir)) {
             throw new \Exception('Cannot write to directory: ' . $fedexSrcDir);
         }
-        
+
         //RateRequest
-        $wsdlPath = $fedexSrcDir . '/_wsdl/RateService_v10.wsdl';
+        $wsdlPath = $fedexSrcDir . '/_wsdl/RateService_v14.wsdl';
 
         $baseNamespace = 'FedEx\RateService';
         $subpackageName = 'Rate Service';
@@ -59,7 +59,7 @@ class GenerateCode extends Console\Command\Command
         $pathToRequestClassFile = $fedexSrcDir . '/RateService/Request.php';
         $generateRequestClassFile = new CodeGenerator\GenerateRequestClass($pathToRequestClassFile, $wsdlPath, 'FedEx\RateService', $subpackageName);
         $generateRequestClassFile->run();
-            
+
         //generate SimpleType classes
         $exportPath = $fedexSrcDir . '/RateService/SimpleType';
         $generateSimpleTypes = new CodeGenerator\GenerateSimpleTypeClasses($exportPath, $wsdlPath, $baseNamespace, $subpackageName);
@@ -289,6 +289,6 @@ class GenerateCode extends Console\Command\Command
         $exportPath = $fedexSrcDir . '/PickupService/ComplexType';
         $generateComplexTypes = new CodeGenerator\GenerateComplexTypeClasses($exportPath, $wsdlPath, $baseNamespace, $subPackageName);
         $generateComplexTypes->run();
-        
+
     }
 }
